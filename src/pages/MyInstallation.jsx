@@ -12,7 +12,7 @@ const MyInstallation = () => {
   useEffect(() => {
     const apps = [];
     myAppsIds.forEach((id) => {
-      const isExist = allApps.find((app) => app._id == id);
+      const isExist = allApps.apps.find((app) => app._id == id);
       if (isExist) {
         apps.push(isExist);
       }

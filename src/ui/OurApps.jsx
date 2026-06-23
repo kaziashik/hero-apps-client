@@ -17,7 +17,7 @@ const OurApps = () => {
         </p>
       </div>
       <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 my-10 gap-5">
-        {apps.slice(0, 8).map((app) => (
+        {apps.apps.slice(0, 8).map((app) => (
           <AppCard key={app.id} app={app}></AppCard>
         ))}
       </div>

@@ -10,10 +10,13 @@ const AllAppsPage = () => {
   const [totalApps, setTotalApps] = useState(0);
   const [totalPage, setTotalPage] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
+  const [sort,setsort]=useState("size")
+  const [order,setOrder]=useState("")
+  const [searchText,setSearchText]=useState("");
   const limit = 10;
 
   useEffect(() => {
-    fetch(`http://localhost:5000/apps?limit=${limit}&skip=${currentPage * limit}`)
+    fetch(`http://localhost:5000/apps?limit=${limit}&skip=${currentPage * limit}& sort=${sort}&order=${order}`)
       .then((res) => res.json())
       .then((data) => {
         setApss(data.apps)
@@ -22,7 +25,14 @@ const AllAppsPage = () => {
         setTotalPage(page)
 
       });
-  }, [currentPage])
+  }, [currentPage,order,sort])
+
+  const handelSelect=(e)=>{
+    // console.log(e.target.value);
+    const sortText=e.target.value
+    setsort(sortText.split("-")[0])
+    setOrder(sortText.split("-")[1])
+  }
   return (
     <div>
       <title>All Apps | Hero Apps</title>
@@ -67,7 +77,7 @@ const AllAppsPage = () => {
         </form>
 
         <div className="">
-          <select className="select bg-white">
+          <select onChange={handelSelect} className="select bg-white">
             <option selected disabled={true}>
               Sort by <span className="text-xs">R / S / D</span>
             </option>
